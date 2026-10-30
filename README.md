@@ -1,172 +1,182 @@
-<<<<<<< HEAD
-# RESQNET
-AgentX Hackathon project.
-=======
-# RESQNET — Multi-Agent Disaster Response and Coordination System
+<div align="center">
 
-**AgentX Hackathon 2026 (Hack4Hack — PS-03: Multi-Agent Disaster Response Coordinator)**  
-**Architecture:** Solo-Developer High-Cohesion Monolith  
-**Design System:** Light-Theme Operational Command Centre  
+# 🌊 RESQNET
+### AI-Powered Disaster Response Coordination System
+**Turn emergency reports into coordinated, explainable and accountable rescue operations.**
 
 ---
 
-## 1. Project Overview
+> **Faster response. &nbsp;|&nbsp; Better coordination. &nbsp;|&nbsp; Safer communities.**
 
-**RESQNET** is an intelligent, human-in-the-loop operational command platform designed to coordinate disaster response during major flood emergencies. 
+<br/>
 
-All emergency dispatches within RESQNET are **strictly simulated** for testing, evaluation, and hackathon demonstration purposes. The system is intentionally isolated from actual emergency dispatch infrastructure.
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org)
+[![AI Agents](https://img.shields.io/badge/AI_Agents-Cooperating-8A2BE2?style=for-the-badge&logo=openai&logoColor=white)](#-system-architecture)
+[![Open Source](https://img.shields.io/badge/Open_Source-MIT-22C55E?style=for-the-badge)](#)
 
-Rather than acting as a conversational chatbot, RESQNET coordinates **two specialized AI agents**:
-1. **Triage Agent:** Autonomous parsing of raw flood distress calls, fact extraction, vulnerability identification, and generation of a **structured decision explanation**.
-2. **Response Coordination Agent:** Evaluating prioritized incidents against live rescue teams and equipment reserves to formulate provisional deployment recommendations.
-
-A deterministic **7-Point Pre-Flight Verification** ensures that **zero physical dispatches or resource allocations occur without explicit human commander authorization**.
-
----
-
-## 2. Technology Stack
-
-- **Backend:** Python 3.11+, FastAPI 0.115+, Uvicorn 0.34+, Pydantic v2.10+, SQLAlchemy 2.0+, Psycopg 3.2+
-- **Canonical Database:** PostgreSQL 15+ (Local / Docker / Cloud)
-- **Frontend:** Next.js 16 (App Router), React 19, TypeScript 5, Tailwind CSS, Lucide React
-- **Geographic Visualisation:** Leaflet / OpenStreetMap
-- **Testing:** Pytest 9.2+, Pytest-Asyncio 1.4+, HTTPX
+</div>
 
 ---
 
-## 3. Monorepo Folder Structure
+## 🎯 About
 
-```text
-AgentX/
-├── docs/                      # Approved Engineering Specifications
-│   ├── APP_FLOW.md            # Complete application navigation and workflows
-│   ├── PRD.md                 # Product requirements and prioritized MVP scope
-│   ├── IMPLEMENTATION_PLAN.md # 10-phase solo-developer roadmap
-│   ├── PROJECT_SCHEMA.md      # Canonical PostgreSQL schema and API contracts
-│   ├── TRD.md                 # Technical requirements and safety rules
-│   └── UI_UX.md               # Light-theme command centre design system
-│
-├── backend/                   # FastAPI Application Server
-│   ├── app/
-│   │   ├── __init__.py
-│   │   └── main.py            # API entrypoint, CORS & health endpoints
-│   ├── tests/
-│   │   ├── __init__.py
-│   │   └── test_health.py     # Backend test suite (pytest)
-│   ├── requirements.txt       # Locked Python dependencies
-│   ├── .env.example           # Backend environment template
-│   └── .env                   # Local backend configuration (git-ignored)
-│
-├── frontend/                  # Next.js Application Client
-│   ├── src/
-│   │   └── app/
-│   │       ├── layout.tsx     # Root layout & RESQNET metadata
-│   │       ├── page.tsx       # Command hub homepage & health connectivity
-│   │       └── globals.css    # Light-theme CSS tokens
-│   ├── public/                # Static assets
-│   ├── package.json           # Frontend dependencies & scripts
-│   ├── .env.example           # Frontend environment template
-│   └── .env.local             # Local frontend configuration (git-ignored)
-│
-├── .gitignore                 # Excludes venv, node_modules, and .env files
-└── README.md                  # Project root guide
+**RESQNET** is a multi-agent disaster response coordination system designed to improve emergency response during disasters such as urban floods.
+
+It uses two **AI agents**: a **Triage Agent** to analyse and prioritise incoming emergency reports, and a **Response Coordination Agent** to recommend suitable rescue teams based on availability, capacity, location and resource requirements.
+
+A central orchestrator coordinates both agents, while **human approval is mandatory** before every simulated dispatch. The platform provides an operational dashboard, incident mapping, resource coordination, multilingual notifications and an append-only audit trail.
+
+---
+
+## ⚙️ System Architecture
+
+```mermaid
+flowchart LR
+    subgraph Inputs ["Inputs"]
+        direction TB
+        I1["📄 Emergency Reports<br/>(Web, Mobile, Call)"]
+        I2["👤 Citizen / Field Reports"]
+        I3["☁️ External Data<br/>(Weather, Maps, etc.)"]
+    end
+
+    subgraph RESQNET ["RESQNET (Multi-Agent System)"]
+        direction LR
+        A1["🔍 <b>Triage Agent</b><br/>Analyse & prioritise<br/>emergency reports"]
+        O["⚙️ <b>Orchestrator</b><br/>Coordinates agents<br/>& manages workflow"]
+        A2["👥 <b>Response<br/>Coordination Agent</b><br/>Finds suitable teams<br/>based on availability,<br/>location & resources"]
+        H["🛡️ <b>Human Approval</b><br/>Review & approve<br/>dispatch plan"]
+        
+        A1 --> O
+        O --> A2
+        A2 --> H
+    end
+
+    subgraph Outputs ["Outputs"]
+        direction TB
+        O1["🚑 Rescue Team Dispatch<br/>(Simulated)"]
+        O2["📍 Live Incident Map"]
+        O3["🔔 Multilingual Alerts"]
+        O4["📊 Resource Tracking"]
+        O5["📑 Audit Trail & Reports"]
+    end
+
+    Inputs --> A1
+    H --> Outputs
+
+    style RESQNET fill:#F8FAFC,stroke:#2563EB,stroke-width:2px,stroke-dasharray: 5 5
+    style A1 fill:#EFF6FF,stroke:#3B82F6,stroke-width:1.5px
+    style O fill:#FAF5FF,stroke:#8B5CF6,stroke-width:1.5px
+    style A2 fill:#F0FDF4,stroke:#22C55E,stroke-width:1.5px
+    style H fill:#FEF3C7,stroke:#F59E0B,stroke-width:1.5px
 ```
 
 ---
 
-## 4. Quickstart Guide (Local Development)
+## ⭐ Key Features
 
-### 4.1 Backend Setup & Execution
-
-1. **Navigate to the backend directory:**
-   ```bash
-   cd backend
-   ```
-
-2. **Activate the Python virtual environment:**
-   - **Windows (PowerShell):**
-     ```powershell
-     .\venv\Scripts\Activate.ps1
-     ```
-   - **Linux/macOS:**
-     ```bash
-     source venv/bin/activate
-     ```
-
-3. **Install dependencies (if not already installed):**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Verify environment variables:**
-   Ensure `backend/.env` exists (copied from `.env.example`).
-
-5. **Run the test suite:**
-   ```bash
-   pytest
-   ```
-
-6. **Start the FastAPI server:**
-   ```bash
-   uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
-   ```
-   - **API Docs:** `http://127.0.0.1:8000/docs`
-   - **Health Check:** `http://127.0.0.1:8000/health`
+| Feature | Description |
+| :--- | :--- |
+| 📄 **AI-Powered Triage** | Autonomous parsing and prioritisation of emergency distress reports using structured decision explanations. |
+| 🛡️ **Human-in-the-Loop** | Every physical dispatch requires explicit human operator authorisation through a 7-point pre-flight safety check. |
+| 🔔 **Multilingual Notifications** | Generates instant area-wise emergency status updates in both Hindi (हिन्दी) and English. |
+| 👥 **Smart Team Recommendation** | Proximity-based matching of available rescue units based on crew capacity, capabilities, and required gear. |
+| 🗺️ **Live Dashboard & Maps** | Interactive Leaflet flood map displaying real-time incident pins, team locations, and operational KPI telemetry. |
+| 📑 **Append-Only Audit Trail** | Immutable record of all system events, agent decisions, and commander approvals for transparent post-disaster accountability. |
 
 ---
 
-### 4.2 Frontend Setup & Execution
+## 🛠️ Tech Stack & Project Layout
 
-1. **Navigate to the frontend directory:**
-   ```bash
-   cd frontend
-   ```
+<table>
+<tr>
+<th width="35%">🔧 Tech Stack</th>
+<th width="65%">📁 Project Structure</th>
+</tr>
+<tr>
+<td valign="top">
 
-2. **Install npm dependencies (if not already installed):**
-   ```bash
-   npm install
-   ```
+- **Frontend:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS, Lucide React
+- **Backend:** Python 3.11+, FastAPI, SQLAlchemy 2.0, Pydantic v2
+- **Database:** PostgreSQL 15+ (Canonical)
+- **AI / Agents:** LiteLLM / Google Gemini / OpenAI Structured Outputs
+- **Maps & Tools:** Leaflet / OpenStreetMap
+- **Version Control:** Git & GitHub
 
-3. **Verify environment variables:**
-   Ensure `frontend/.env.local` exists with:
-   ```env
-   NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
-   ```
+</td>
+<td valign="top">
 
-4. **Run the production build or development server:**
-   - **Development mode:**
-     ```bash
-     npm run dev
-     ```
-   - **Production build:**
-     ```bash
-     npm run build
-     npm run start
-     ```
-   - **Application URL:** `http://localhost:3000`
+```text
+RESQNET/
+├── backend/            # FastAPI Application Server
+│   ├── app/            # API endpoints, agents, models & services
+│   ├── tests/          # Pytest test suite
+│   ├── requirements.txt# Python dependencies
+│   └── .env.example    # Backend environment template
+├── frontend/           # Next.js Application Client
+│   ├── src/            # App Router pages, components & design system
+│   ├── public/         # Static assets
+│   ├── package.json    # Frontend dependencies
+│   └── .env.example    # Frontend environment template
+├── docs/               # Engineering Specs (PRD, TRD, APP_FLOW, etc.)
+├── .gitignore          # Excludes venv, node_modules, and .env files
+└── README.md           # Project documentation
+```
 
----
-
-## 5. Health Endpoint Specification
-
-### `GET /health`
-Returns the operational health status of the RESQNET backend.
-
-- **URL:** `http://127.0.0.1:8000/health`
-- **Method:** `GET`
-- **Response Code:** `200 OK`
-- **Response Payload:**
-  ```json
-  {
-    "status": "ok",
-    "service": "resqnet-api"
-  }
-  ```
+</td>
+</tr>
+</table>
 
 ---
 
-## 6. Security & Environment Safeguards
+## 🚀 Getting Started
 
-- Under no circumstances are `.env`, `.env.local`, or secret tokens committed to source control.
-- All secrets, API keys, and database credentials are excluded via the root `.gitignore`.
->>>>>>> 3b9411f (phase 1)
+### 1. Clone the repository
+```bash
+git clone https://github.com/aditrajsharma/RESQNET.git
+cd RESQNET
+```
+
+### 2. Backend Setup (FastAPI)
+```bash
+cd backend
+python -m venv venv
+
+# Windows (PowerShell)
+.\venv\Scripts\Activate.ps1
+
+# Linux / macOS
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the backend server
+uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+```
+
+### 3. Frontend Setup (Next.js)
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+### 🌐 Access Points & Verification
+
+- **Frontend Dashboard:** [http://localhost:3000](http://localhost:3000)
+- **Backend API:** [http://127.0.0.1:8000](http://127.0.0.1:8000)
+- **Interactive API Docs (Swagger):** [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
+- **Health Check Endpoint:** [http://127.0.0.1:8000/health](http://127.0.0.1:8000/health)
+
+---
+
+## 🏆 Our Goal
+
+> **Help rescue teams respond faster and stay better coordinated during disasters by turning fragmented emergency information into coordinated, explainable and accountable rescue operations.**
